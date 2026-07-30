@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RTA Predictor - Predict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='predict.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2 id="heading">Enter Accident Details</h2>
+        
+        <form method="POST">
+            Number of Vehicles Involved: 
+            <select name="Number_of_vehicles_involved" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select><br><br>
+
+            Number of Casualties: 
+            <select name="Number_of_casualties" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select><br><br>
+
+            Types of Junction:
+            <select name="Types_of_Junction" required>
+                <option value="No junction">No junction</option>
+                <option value="Y Shape">Y Shape</option>
+                <option value="Crossing">Crossing</option>
+                <option value="O Shape">O Shape</option>
+                <option value="Other">Other</option>
+                <option value="Unknown">Unknown</option>
+                <option value="T Shape">T Shape</option>
+                <option value="X Shape">X Shape</option>
+            </select><br><br>
+
+            Light Conditions:
+            <select name="Light_conditions" required>
+                <option value="Daylight">Daylight</option>
+                <option value="Darkness - lights lit">Darkness - lights lit</option>
+                <option value="Darkness - no lighting">Darkness - no lighting</option>
+                <option value="Darkness - lights unlit">Darkness - lights unlit</option>
+            </select><br><br>
+
+            Weather Conditions:
+            <select name="Weather_conditions" required>
+                <option value="Normal">Normal</option>
+                <option value="Raining">Raining</option>
+                <option value="Raining and Windy">Raining and Windy</option>
+                <option value="Cloudy">Cloudy</option>
+                <option value="Other">Other</option>
+                <option value="Windy">Windy</option>
+                <option value="Snow">Snow</option>
+                <option value="Unknown">Unknown</option>
+                <option value="Fog or mist">Fog or mist</option>
+            </select><br><br>
+
+            Hour: 
+            <input type="number" name="Hour" 
+                value="{{ form_values['Hour'] if form_values else '' }}" required><br><br>
+
+            Day of Week:
+            <select name="Day_of_week" required>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select><br><br>
+
+            Age Band of Driver:
+            <select name="Age_band_of_driver" required>
+                <option value="18-30">18-30</option>
+                <option value="31-50">31-50</option>
+                <option value="Under 18">Under 18</option>
+                <option value="Over 51">Over 51</option>
+                <option value="Unknown">Unknown</option>
+            </select><br><br>
+
+            Pedestrian Movement:
+            <select name="Pedestrian_movement" required>
+                <option value="Not a Pedestrian">Not a Pedestrian</option>
+                <option value="Crossing from driver's nearside">Crossing from driver's nearside</option>
+                <option value="Crossing from nearside - masked by parked or stationary vehicle">Crossing from nearside - masked by parked or stationary vehicle</option>
+                <option value="Unknown or other">Unknown or other</option>
+                <option value="Crossing from offside - masked by parked or stationary vehicle">Crossing from offside - masked by parked or stationary vehicle</option>
+                <option value="In carriageway, stationary - not crossing (standing or playing)">In carriageway, stationary - not crossing (standing or playing)</option>
+                <option value="Walking along in carriageway, back to traffic">Walking along in carriageway, back to traffic</option>
+                <option value="Walking along in carriageway, facing traffic">Walking along in carriageway, facing traffic</option>
+                <option value="In carriageway, stationary - not crossing (standing or playing) - masked by parked or stationary vehicle">In carriageway, stationary - not crossing (standing or playing) - masked by parked or stationary vehicle</option>
+            </select><br><br>
+
+            Type of Collision:
+            <select name="Type_of_collision" required>
+                <option value="Collision with roadside-parked vehicles">Collision with roadside-parked vehicles</option>
+                <option value="Vehicle with vehicle collision">Vehicle with vehicle collision</option>
+                <option value="Collision with roadside objects">Collision with roadside objects</option>
+                <option value="Collision with animals">Collision with animals</option>
+                <option value="Other">Other</option>
+                <option value="Rollover">Rollover</option>
+                <option value="Fall from vehicles">Fall from vehicles</option>
+                <option value="Collision with pedestrians">Collision with pedestrians</option>
+                <option value="With Train">With Train</option>
+                <option value="Unknown">Unknown</option>
+            </select><br><br>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+        
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>
